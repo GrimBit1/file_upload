@@ -59,6 +59,9 @@ const html = `<!DOCTYPE html>
 func main() {
 	e := echo.New()
 	e.Use(middleware.Logger())
+	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
+		Browse: true,
+	}))
 	e.GET("/upload", func(c echo.Context) error {
 		return c.HTML(200, html)
 	})
