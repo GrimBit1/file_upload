@@ -19,7 +19,7 @@ const html = `<!DOCTYPE html>
   </head>
   <body>
     <input type="file" name="file" id="file" /><br />
-    <progress id="progress" value="0"></progress><br />
+    <progress id="progress" value="0" max="100"></progress><br />
     <button>Click here to upload</button>
     <div id="msg"></div>
     <script>
@@ -32,7 +32,7 @@ const html = `<!DOCTYPE html>
         e.preventDefault();
         const xhr = new XMLHttpRequest();
         xhr.upload.onprogress = (e) => {
-          progress.value = (e.loaded / e.total) * 100;
+          progress.value = parseInt((e.loaded / e.total) * 100);
           msg.innerHTML = parseInt((e.loaded / e.total) * 100) + "%";
         };
         xhr.onloadend = function () {
